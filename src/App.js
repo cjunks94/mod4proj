@@ -10,7 +10,17 @@ import Vr from './Vr';
 
 
 
-const App = (props) => {
+class App extends React.Component{
+  constructor(){
+    super()
+    // set state with stuff i thought was useful
+    this.state ={
+      currentCard:'',
+      currentser:'',
+      allCards:[],
+    }
+  }
+  render(){
   return (
     <Router>
       <div>
@@ -21,7 +31,7 @@ const App = (props) => {
 
       </div>
     </Router>
-  );
+  )}
 };
 
 export default App
