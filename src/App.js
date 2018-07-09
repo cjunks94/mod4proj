@@ -20,14 +20,20 @@ class App extends React.Component{
       allCards:[],
     }
   }
+
+  homeFunc = () =>{
+    console.log('helooooo');
+    document.location.href="/";
+  }
+
   render(){
   return (
     <Router>
       <div>
-        <Navbar />
-      <Route exact path="/" component={Home} />
-      <Route exact path="/signup" component={SignUp} />
-      <Route exact path="/vr" component={Vr} />
+      <Navbar />
+        <Route exact path="/" render={()=> <Home test={this.homeFunc}/>} />
+        <Route exact path="/signup" render={()=> <SignUp test={this.homeFunc}/>} />
+      <Route exact path="/vr" render={()=> <Vr test={this.homeFunc}/>} />
 
       </div>
     </Router>
