@@ -1,4 +1,5 @@
 import React from 'react';
+import './App.css';
 import {
   BrowserRouter as Router,
   Route
@@ -25,10 +26,9 @@ class App extends React.Component{
     <Router>
       <div>
         <Navbar />
-      <Route exact path="/" component={Home} />
-      <Route exact path="/signup" component={SignUp} />
-      <Route exact path="/vr" component={Vr} />
-
+        <Route exact path="/" component={Home} />
+        <Route exact path="/signup" component={SignUp} />
+        <Route exact path="/vr" component={Vr} />
       </div>
     </Router>
   )}
