@@ -37,8 +37,12 @@ render(){
       height=".5"
       width=".75"
       shader="flat"
-      mixin="floats"
       onClick={this.props.test}>
+      <a-animation mixin="floats"
+        delay="500"
+        from="-2 3 -3"
+        to="-2 2.7 -3">
+        </a-animation>
       </a-box>
 
           <a-entity id="deck"
@@ -67,17 +71,27 @@ render(){
               </a-plane>
           </a-entity>
 
-          <a-box id="new-card"
-            position="0 1.8 -3"
-            rotation="0 0 0"
-            material=" color: aqua"
-            depth=".001"
-            height="3"
-            width="2"
-            shader="flat"
-            visible="false"
-            >
-            </a-box>
+
+            <a-plane id="card-1"
+              position="0 3.4 -4.8"
+              rotation="10 0 0"
+              width="2"
+              height="3"
+              src="persona.png"
+              shader="flat"
+              visible="true">
+              </a-plane>
+              
+            <a-plane id="card-2"
+              position="0 3.4 -4.8"
+              rotation="10 0 0"
+              width="2"
+              height="3"
+              src="persona.png"
+              shader="flat"
+              visible="true">
+              </a-plane>
+
 
     {/* box material will be changed to "src: 'our tarot img url'" */}
 
@@ -90,9 +104,17 @@ render(){
              to="0 0 360"
              repeat="indefinite"></a-animation>
     </a-sky>
+    <a-sky material="src: space.png" radius="2000" opacity=".75">
+      <a-animation attribute="rotation"
+             dur="100000"
+             fill="forwards"
+             from="0 0 360"
+             to="0 0 0"
+             repeat="indefinite"></a-animation>
+    </a-sky>
 
 
-    <a-entity particle-system="preset:dust;particleCount:10000;color:purple"></a-entity>
+    <a-entity particle-system="preset:dust;particleCount:10000;color:blue"></a-entity>
 
 
     </a-scene>
