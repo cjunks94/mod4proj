@@ -8,6 +8,7 @@ import 'aframe-particle-system-component'
 
 class Vr extends React.Component{
   spin  = (e) =>{
+    console.log(e.target);
   e.target.emit('wee')
 }
 zoom = (e) =>{
@@ -66,7 +67,7 @@ render(){
               width="2"
               height=".5"
               rotation="0 -90 0"
-              src="lines.png"
+              src="lines2.png"
               shader="flat">
               </a-plane>
             <a-plane id="top"
@@ -195,7 +196,6 @@ render(){
              to="0 0 0"
              repeat="indefinite"></a-animation>
     </a-sky>
-
 
     <a-entity particle-system="preset:dust;particleCount:10000;color:blue"></a-entity>
 
