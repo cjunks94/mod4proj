@@ -10,7 +10,7 @@ class Vr extends React.Component{
 createCard = () =>{
   const scene = document.getElementsByTagName('a-scene')[0]
 
-  const newBox =`<a-box id="new-card"position="0 1.8 -3" rotation="0 0 0" material=" color: aqua" depth=".001" height="3" width="2" shader="flat" onClick=${this.props.test}></a-box>`
+  const newBox =`<a-box id="new-card"position="0 1.8 -3" rotation="0 0 0" material=" color: aqua" depth=".001" height="3" width="2" shader="flat" onClick={this.props.test}></a-box>`
   scene.insertAdjacentHTML( 'beforeend', newBox)
   scene.removeChild(document.getElementById('card-deck'))
 
@@ -64,27 +64,9 @@ render(){
              repeat="indefinite"></a-animation>
     </a-sky>
     {/* <a-sky material="color: purple" opacity=".5" radius="2000"></a-sky> */}
-    <a-ocean
-      color="aqua"
-      depth="50"
-      width="50"
-      density="5"
-      opacity=".7"
-      amplitude=".5"
-      >
-      </a-ocean>
-    <a-ocean
-      color="blue"
-      depth="50"
-      width="50"
-      density="10"
-      opacity="1"
-      amplitude=".5"
-      sound="src: url(sea.mp3); autoplay: true; loop: true; volume: .5"
-      >
-      </a-ocean>
 
-      {/* <a-entity position="0 2.25 -15" particle-system="preset: dust"></a-entity> */}
+
+<a-entity particle-system="preset:dust;particleCount:10000;color:purple"></a-entity>
 
 
     </a-scene>
