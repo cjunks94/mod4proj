@@ -1,3 +1,5 @@
+Star Image credit: https://www.flickr.com/photos/tomlechner/9337477855/in/photolist-fe81Rv-VeKyic-9QurK8-F7LXTm-bqpQEL-TRfHzL-ELLuyR-XjUecv-53zsD3-22cPZ1H-SmNsLo-5BJnAh-SWF974-q9WAGG-pWEBGL-ZNEgha-AMSGfM-hpQ6d8-7wAKvB-sc3SQk-nPTvFX-4XrLpk-SKpfCz-Xrzpuq-FpLwC7-Ef3LJj-bseciM-7W2Yup-hpKMir-XtFKCs-hMUPu2-UMH6P9-4ZXgk5-REc4MS-bseaz6-5Xpog9-71Gdbk-R242kK-mBAj3v-HVAEvV-qrnGo4-bd8apR-bd88Ji-64FKCq-bd87h6-gHXij9-8LtGrQ-DbPx4X-n5h1hV-cdwBAG
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
@@ -300,7 +302,7 @@ In the WebStorm menu `Run` select `Edit Configurations...`. Then click `+` and s
 
 Start your app by running `npm start`, then press `^D` on macOS or `F9` on Windows and Linux or click the green debug icon to start debugging in WebStorm.
 
-The same way you can debug your application in IntelliJ IDEA Ultimate, PhpStorm, PyCharm Pro, and RubyMine. 
+The same way you can debug your application in IntelliJ IDEA Ultimate, PhpStorm, PyCharm Pro, and RubyMine.
 
 ## Formatting Code Automatically
 
@@ -1989,7 +1991,7 @@ If you’re using [Apache HTTP Server](https://httpd.apache.org/), you need to c
     RewriteRule ^ index.html [QSA,L]
 ```
 
-It will get copied to the `build` folder when you run `npm run build`. 
+It will get copied to the `build` folder when you run `npm run build`.
 
 If you’re using [Apache Tomcat](http://tomcat.apache.org/), you need to follow [this Stack Overflow answer](https://stackoverflow.com/a/41249464/4878474).
 
@@ -2429,7 +2431,7 @@ To resolve this:
 1. Open an issue on the dependency's issue tracker and ask that the package be published pre-compiled.
   * Note: Create React App can consume both CommonJS and ES modules. For Node.js compatibility, it is recommended that the main entry point is CommonJS. However, they can optionally provide an ES module entry point with the `module` field in `package.json`. Note that **even if a library provides an ES Modules version, it should still precompile other ES6 features to ES5 if it intends to support older browsers**.
 
-2. Fork the package and publish a corrected version yourself. 
+2. Fork the package and publish a corrected version yourself.
 
 3. If the dependency is small enough, copy it to your `src/` folder and treat it as application code.
 

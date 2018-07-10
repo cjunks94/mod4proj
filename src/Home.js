@@ -3,7 +3,6 @@ import TarotImg from './components/TarotImg'
 import Card from './components/Card'
 
 const Home = (props) => {
-  console.log(props)
   return (
     <div>
       <h2>Welcome to TarotVR!</h2>

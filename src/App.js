@@ -82,6 +82,10 @@ class App extends React.Component{
     this.setState({ currentCard })
   }
 
+  homeFunc = () =>{
+    document.location.href="/";
+  }
+
   render(){
   return (
     <Router>
@@ -89,7 +93,7 @@ class App extends React.Component{
         <Navbar currentUser={this.state.auth.currentUser} handleLogin={this.handleLogin} handleLogout={this.handleLogout}/>
         <Route exact path="/" render={(props) => <Home {...props} cards={this.state.cards} currentCard={this.state.currentCard} handleImgClick={this.handleImgClick} />} />
         <Route exact path="/signup" component={SignUpContainer} />
-        <Route exact path="/vr" component={Vr} />
+        <Route exact path="/vr" render={()=> <Vr test={this.homeFunc}/>} />
       </div>
     </Router>
   )}
