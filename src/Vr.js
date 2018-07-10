@@ -7,22 +7,24 @@ import 'aframe-particle-system-component'
 
 
 class Vr extends React.Component{
-createCard = () =>{
-  // const scene = document.getElementsByTagName('a-scene')[0]
-  // const newBox =`<a-box id="new-card"position="0 1.8 -3" rotation="0 0 0" material=" color: aqua" depth=".001" height="3" width="2" shader="flat" onClick={this.props.test}></a-box>`
-  // scene.insertAdjacentHTML( 'beforeend', newBox)
-
+  spin  = (e) =>{
+  e.target.emit('wee')
 }
-testFunc = (e) =>{
-  console.log(e.target.nextElementSibling)
-  e.target.nextElementSibling.emit('start')
+zoom = (e) =>{
+  const card2 = document.querySelector('#card-2')
+  const card1 = document.querySelector('#card-1')
+  const card3 = document.querySelector('#card-3')
+  e.target.emit('stop')
+  card2.emit('start')
+  card1.emit('start')
+  card3.emit('start')
 }
 
 render(){
   return (
     <a-scene new-scene>
       <a-camera position="0 2 .75">
-        <a-cursor></a-cursor>
+        <a-cursor color="blue"></a-cursor>
     </a-camera>
 
     <a-assets>
@@ -49,10 +51,11 @@ render(){
         </a-animation>
       </a-box>
 
+          {/* deck */}
           <a-entity id="deck"
             rotation= "0 90 15"
             position="0 .3 -3"
-            onClick={this.createCard}>>
+            onClick={this.zoom}>>
             <a-animation mixin="floats"
               from="0 .826 -3"
               to="0 .5 -3">
@@ -75,23 +78,40 @@ render(){
               </a-plane>
           </a-entity>
 
+            {/* card 1 */}
             <a-box id="card-1"
-              position="-3 3.4 -4.5"
+              position="-3 3.4 -1000"
               rotation="0 10 0"
               width="2"
               height="3"
               depth=".1"
               src="persona.png"
               shader="flat"
-              visible="true">
+              visible="true"
+              onClick={this.spin}>
               <a-animation mixin="floats"
                 delay="300"
+                begin="start"
                 from="-3 3.4 -4.5"
                 to="-3 3.2 -4.5">
                 </a-animation>
+                <a-animation
+                  attribute="position"
+                  begin="start"
+                  from="-3 3.4 -1000"
+                  to="-3 3.4 -4.5">
+                  </a-animation>
+                  <a-animation
+                    attribute="rotation"
+                    begin="wee"
+                    from="0 10 0"
+                    to="0 550 0">
+                    </a-animation>
               </a-box>
+
+              {/* card 2 rightmost */}
             <a-box id="card-2"
-              position="3 3.4 -4.5"
+              position="3 3.4 -1000"
               rotation="0 -10 0"
               width="2"
               height="3"
@@ -99,36 +119,60 @@ render(){
               src="persona.png"
               shader="flat"
               visible="true"
-              onClick={this.testFunc}>
+              onClick={this.spin}>
+              {/* float */}
               <a-animation mixin="floats"
                 delay="700"
-                end="start"
+                begin="start"
                 from="3 3.1 -4.5"
                 to="3 3.4 -4.5">
                 </a-animation>
+                {/* forward */}
                 <a-animation
                   attribute="position"
                   begin="start"
-                  from="3 3.1 -4.5"
-                  to="100 100 100">
+                  from="3 3.4 -1000"
+                  to="3 3.1 -4.5">
                   </a-animation>
+                  <a-animation
+                    attribute="rotation"
+                    begin="wee"
+                    from="0 -10 0"
+                    to="0 170 0">
+                    </a-animation>
               </a-box>
 
             <a-box id="card-3"
-              position="0 3.4 -4.8"
+              position="0 3.4 -1000"
               rotation="0 0 0"
               width="2"
               height="3"
               depth=".1"
               src="persona.png"
               shader="flat"
-              visible="true">
+              visible="true"
+              onClick={this.spin}>
+              {/* space float */}
               <a-animation mixin="floats"
                 dur="2000"
                 delay="700"
+                begin="start"
                 from="0 3.2 -4.5"
                 to="0 3.5 -4.5">
                 </a-animation>
+                {/* fly forward alot */}
+                <a-animation
+                  attribute="position"
+                  begin="start"
+                  from="0 3.4 -1000"
+                  to="0 3.4 -4.5">
+                  </a-animation>
+                  <a-animation
+                    attribute="rotation"
+                    begin="wee"
+                    from="0 0 0"
+                    to="180 0 180">
+                    </a-animation>
               </a-box>
 
 
