@@ -80,6 +80,7 @@ class App extends React.Component{
   handleImgClick = (e) => {
     const currentCard = this.state.cards.find( card => card.id == e.target.id)
     this.setState({ currentCard })
+    window.scrollTo(0, document.body.scrollHeight)
   }
 
   homeFunc = () =>{
