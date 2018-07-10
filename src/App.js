@@ -22,7 +22,6 @@ class App extends React.Component{
   }
 
   homeFunc = () =>{
-    console.log('helooooo');
     document.location.href="/";
   }
 
@@ -33,7 +32,7 @@ class App extends React.Component{
       <Navbar />
         <Route exact path="/" render={()=> <Home test={this.homeFunc}/>} />
         <Route exact path="/signup" render={()=> <SignUp test={this.homeFunc}/>} />
-      <Route exact path="/vr" render={()=> <Vr test={this.homeFunc}/>} />
+        <Route exact path="/vr" render={()=> <Vr test={this.homeFunc}/>} />
 
       </div>
     </Router>
