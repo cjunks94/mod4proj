@@ -11,7 +11,7 @@ const NavBar = (props) => {
       <div className="navbar left">
         <img src="tarot.png" alt="TarotVR Logo" width="46px" height="46px"/>
         <NavLink to="/">Home</NavLink>
-        <NavLink to="/vr" target="_blank">VR</NavLink>
+        <NavLink to="/vr">VR</NavLink>
         {loggedIn ? null : <NavLink to="/signup">Sign Up</NavLink> }      
       </div>
       <div className="navbar right">
