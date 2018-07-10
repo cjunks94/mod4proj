@@ -8,7 +8,6 @@ import Navbar from './NavBar';
 import SignUpContainer from './SignUpContainer';
 import Home from './Home';
 import Vr from './Vr';
-import SignUpContainer from './SignUpContainer';
 
 
 
