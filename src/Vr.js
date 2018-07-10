@@ -8,16 +8,20 @@ import 'aframe-particle-system-component'
 
 class Vr extends React.Component{
 createCard = () =>{
-  const scene = document.getElementsByTagName('a-scene')[0]
-  const newBox =`<a-box id="new-card"position="0 1.8 -3" rotation="0 0 0" material=" color: aqua" depth=".001" height="3" width="2" shader="flat" onClick={this.props.test}></a-box>`
-  scene.insertAdjacentHTML( 'beforeend', newBox)
+  // const scene = document.getElementsByTagName('a-scene')[0]
+  // const newBox =`<a-box id="new-card"position="0 1.8 -3" rotation="0 0 0" material=" color: aqua" depth=".001" height="3" width="2" shader="flat" onClick={this.props.test}></a-box>`
+  // scene.insertAdjacentHTML( 'beforeend', newBox)
 
+}
+testFunc = (e) =>{
+  console.log(e.target.nextElementSibling)
+  e.target.nextElementSibling.emit('start')
 }
 
 render(){
   return (
     <a-scene new-scene>
-      <a-camera>
+      <a-camera position="0 2 .75">
         <a-cursor></a-cursor>
     </a-camera>
 
@@ -30,8 +34,8 @@ render(){
       </a-mixin>
     </a-assets>
 
-    <a-box position="-2 3 -3"
-      rotation="0 0 0"
+    <a-box position="-4 3 -3"
+      rotation="0 30 0"
       material="src: exit.png"
       depth=".001"
       height=".5"
@@ -40,8 +44,8 @@ render(){
       onClick={this.props.test}>
       <a-animation mixin="floats"
         delay="500"
-        from="-2 3 -3"
-        to="-2 2.7 -3">
+        from="-4 3 -3"
+        to="-4 2.7 -3">
         </a-animation>
       </a-box>
 
@@ -71,26 +75,61 @@ render(){
               </a-plane>
           </a-entity>
 
+            <a-box id="card-1"
+              position="-3 3.4 -4.5"
+              rotation="0 10 0"
+              width="2"
+              height="3"
+              depth=".1"
+              src="persona.png"
+              shader="flat"
+              visible="true">
+              <a-animation mixin="floats"
+                delay="300"
+                from="-3 3.4 -4.5"
+                to="-3 3.2 -4.5">
+                </a-animation>
+              </a-box>
+            <a-box id="card-2"
+              position="3 3.4 -4.5"
+              rotation="0 -10 0"
+              width="2"
+              height="3"
+              depth=".1"
+              src="persona.png"
+              shader="flat"
+              visible="true"
+              onClick={this.testFunc}>
+              <a-animation mixin="floats"
+                delay="700"
+                end="start"
+                from="3 3.1 -4.5"
+                to="3 3.4 -4.5">
+                </a-animation>
+                <a-animation
+                  attribute="position"
+                  begin="start"
+                  from="3 3.1 -4.5"
+                  to="100 100 100">
+                  </a-animation>
+              </a-box>
 
-            <a-plane id="card-1"
+            <a-box id="card-3"
               position="0 3.4 -4.8"
-              rotation="10 0 0"
+              rotation="0 0 0"
               width="2"
               height="3"
+              depth=".1"
               src="persona.png"
               shader="flat"
               visible="true">
-              </a-plane>
-              
-            <a-plane id="card-2"
-              position="0 3.4 -4.8"
-              rotation="10 0 0"
-              width="2"
-              height="3"
-              src="persona.png"
-              shader="flat"
-              visible="true">
-              </a-plane>
+              <a-animation mixin="floats"
+                dur="2000"
+                delay="700"
+                from="0 3.2 -4.5"
+                to="0 3.5 -4.5">
+                </a-animation>
+              </a-box>
 
 
     {/* box material will be changed to "src: 'our tarot img url'" */}
