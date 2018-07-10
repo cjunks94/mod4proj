@@ -1,11 +1,79 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  font-family:'Roboto',sans-serif;
+}
+
+.left, .right {
+  display: flex;
+  align-items: center;
 }
 
 a {
+  justify-content: flex-start;
   text-decoration: none;
   margin: 0.5em;
   text-align: center;
+}
+
+input {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box; 
+  margin: .2em;
+  padding: .4em;
+  border-radius: 3px;
+  -webkit-border-radius:3px;
+  -moz-border-radius:3px;
+  border: 1px solid #ccc;
+  /* resize: vertical; */
+}
+
+.button {
+  display: inline-block;
+  padding:0.35em 1.2em;
+  border:0.1em solid #FFFFFF;
+  margin:0 0.3em 0.3em 0;
+  border-radius:0.12em;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-family:'Roboto',sans-serif;
+  font-weight:300;
+  background-color:black; 
+  color:#FFFFFF;
+  text-align:center;
+  transition: all 0.2s;
+}
+
+.button:hover {
+  color:#000000;
+  background-color:#FFFFFF;
+}
+
+/* @media all and (max-width:30em) {
+   a.button1 {
+    display:block;
+    margin:0.4em auto;
+   }
+} */
+
+.scrolling-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.scrolling-wrapper .card {
+  flex: 0 0 auto;
+}
+
+h4 {
+  display: flex;
+  justify-content: center;
 }
