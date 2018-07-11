@@ -19,6 +19,7 @@ class App extends React.Component{
       auth: {
         currentUser: {}
       },
+      userCards:[],
       currentCard: {},
       cards:[]
     }
@@ -31,6 +32,10 @@ class App extends React.Component{
     }
 
     this.getCards()
+  }
+  setCurrentReading = (arr) =>{
+    // set state as users 3 cards
+    console.log(arr);
   }
 
   getCards = () => {
@@ -94,7 +99,7 @@ class App extends React.Component{
         <Navbar currentUser={this.state.auth.currentUser} handleLogin={this.handleLogin} handleLogout={this.handleLogout}/>
         <Route exact path="/" render={(props) => <Home {...props} cards={this.state.cards} currentCard={this.state.currentCard} handleImgClick={this.handleImgClick} />} />
         <Route exact path="/signup" component={SignUpContainer} />
-      <Route exact path="/vr" render={(props)=> <Vr cards={this.state.cards} test={this.homeFunc}/>} />
+      <Route exact path="/vr" render={(props)=> <Vr handleReading={this.setCurrentReading} cards={this.state.cards} test={this.homeFunc}/>} />
       </div>
     </Router>
   )}
