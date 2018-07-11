@@ -7,8 +7,13 @@ import 'aframe-particle-system-component'
 
 
 class Vr extends React.Component{
+
   spin  = (e) =>{
   e.target.emit('wee')
+  let randomCard = Math.floor(Math.random() * 21)
+  if(e.target.querySelector('.face')){
+    e.target.querySelector('.face').setAttribute("src", this.props.cards[randomCard].image_url)
+}
 }
 zoom = (e) =>{
   const card2 = document.querySelector('#card-2')
@@ -107,6 +112,17 @@ render(){
                     from="0 10 0"
                     to="0 550 0">
                     </a-animation>
+                    <a-plane
+                      class="face"
+                      shader="flat"
+                      position=".014 0 -.06"
+                      rotation="0 180 0"
+                      width="2"
+                      height="3"
+                      depth=".1"
+                      src="persona.png"
+
+                      ></a-plane>
               </a-box>
 
               {/* card 2 rightmost */}
@@ -140,6 +156,16 @@ render(){
                     from="0 -10 0"
                     to="0 170 0">
                     </a-animation>
+                    <a-plane
+                      class="face"
+                      shader="flat"
+                      position="-.006 0 -.06"
+                      rotation="0 180 0"
+                      width="2"
+                      height="3"
+                      depth=".1"
+                      src="persona.png"
+                      ></a-plane>
               </a-box>
 
             <a-box id="card-3"
@@ -173,6 +199,17 @@ render(){
                     from="0 0 0"
                     to="180 0 180">
                     </a-animation>
+                    <a-plane
+                      class="face"
+                      shader="flat"
+                      position="0 0 -.06"
+                      rotation="0 180 0"
+                      width="2"
+                      height="3"
+                      depth=".1"
+                      src="persona.png"
+
+                      ></a-plane>
               </a-box>
 
 
