@@ -8,6 +8,9 @@ class SignUpContainer extends React.Component {
           username: '',
           password: '',
           passwordConfirmation: '',
+          firstName: '',
+          lastName: '',
+          email: ''
       }
   };
 
@@ -38,7 +41,7 @@ class SignUpContainer extends React.Component {
     return (
       <div>
         <h1>Sign Up Page</h1>
-        < SignUpForm handleSubmit={this.handleSubmit} handleChange={this.handleChange}/>
+        < SignUpForm fields={this.state.fields} handleSubmit={this.handleSubmit} handleChange={this.handleChange}/>
       </div>
     );
   }
