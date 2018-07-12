@@ -4,7 +4,7 @@ import Card from './components/Card'
 
 const Home = (props) => {
   return (
-    <div>
+    <div className="page">
       <h2>Welcome to TarotVR!</h2>
       <p>Select one of the following options:</p>
       <ul>

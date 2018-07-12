@@ -90,7 +90,7 @@ class App extends React.Component{
   render(){
   return (
     <Router>
-      <div>
+      <div id="wrapper">
         <Navbar currentUser={this.state.auth.currentUser} handleLogin={this.handleLogin} handleLogout={this.handleLogout}/>
         <Route exact path="/" render={(props) => <Home {...props} cards={this.state.cards} currentCard={this.state.currentCard} handleImgClick={this.handleImgClick} />} />
         <Route exact path="/signup" component={SignUpContainer} />

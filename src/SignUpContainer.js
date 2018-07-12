@@ -36,7 +36,7 @@ class SignUpContainer extends React.Component {
 
     
     return (
-      <div>
+      <div className="page">
         <h1>Sign Up Page</h1>
         < SignUpForm handleSubmit={this.handleSubmit} handleChange={this.handleChange}/>
       </div>
