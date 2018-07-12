@@ -1,5 +1,5 @@
 import React from 'react';
-import SignUpForm from './components/SignUpForm'
+import Form from './components/Form'
 
 class SignUpContainer extends React.Component {
 
@@ -46,7 +46,7 @@ class SignUpContainer extends React.Component {
     return (
       <div>
         <h1>Sign Up Page</h1>
-        < SignUpForm fields={this.state.fields} handleSubmit={this.handleSubmit} handleChange={this.handleChange}/>
+        < Form fields={this.state.fields} handleSubmit={this.handleSubmit} handleChange={this.handleChange}/>
       </div>
     );
   }
