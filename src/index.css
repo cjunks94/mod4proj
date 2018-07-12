@@ -31,7 +31,6 @@ input {
   -webkit-border-radius:3px;
   -moz-border-radius:3px;
   border: 1px solid #ccc;
-  /* resize: vertical; */
 }
 
 .button {
@@ -55,12 +54,9 @@ input {
   background-color:#FFFFFF;
 }
 
-/* @media all and (max-width:30em) {
-   a.button1 {
-    display:block;
-    margin:0.4em auto;
-   }
-} */
+.page-body {
+  margin: 0 1em 0.5em;
+}
 
 .scrolling-wrapper {
   display: flex;
