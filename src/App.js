@@ -34,19 +34,29 @@ class App extends React.Component{
     this.getCards()
   }
 
-  // componentDidUpdate () {
-  //   console.log('state?');
-  //   console.log(this.state.userCardReading);
-  // }
-
   setCurrentReading = (cards) =>{
     // set state as users 3 cards
     console.log(cards);
     this.setState({
       userCardReading: cards
      })
+     const options =   {
+       method: 'POST',
+       headers: {
+         'Content-Type': 'application/json',
+         'Accept': 'application/json'
+       },
+           'body': JSON.stringify(cards)
+     }
+     fetch('http://localhost:3000/api/v1/readings', options)
+     // if(this.state.auth.currentUser === {}){
+     //   window.alert('you gotta login')
+     // }else{
+     //   window.alert('nice')
+     // }
 
   }
+
 
   getCards = () => {
     fetch('http://localhost:3000/api/v1/cards')
