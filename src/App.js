@@ -20,7 +20,7 @@ class App extends React.Component{
       auth: {
         currentUser: {}
       },
-      userCards:[],
+      userCardReading:[],
       currentCard: {},
       cards:[]
     }
@@ -31,12 +31,21 @@ class App extends React.Component{
     if (token) {
       this.getAuth(token)
     }
-
     this.getCards()
   }
-  setCurrentReading = (arr) =>{
+
+  // componentDidUpdate () {
+  //   console.log('state?');
+  //   console.log(this.state.userCardReading);
+  // }
+
+  setCurrentReading = (cards) =>{
     // set state as users 3 cards
-    console.log(arr);
+    console.log(cards);
+    this.setState({
+      userCardReading: cards
+     })
+
   }
 
   getCards = () => {
@@ -88,9 +97,9 @@ class App extends React.Component{
     this.setState({ currentCard })
     setTimeout(
       //adjusts document to show user new content
-      () => window.scrollTo(0, document.body.scrollHeight), 
+      () => window.scrollTo(0, document.body.scrollHeight),
       100
-    ) 
+    )
   }
 
   homeFunc = () =>{
@@ -99,7 +108,7 @@ class App extends React.Component{
 
   render(){
     const user = this.state.auth.currentUser;
-    
+
     return (
       <Router>
         <div>
