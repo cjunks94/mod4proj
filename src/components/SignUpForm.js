@@ -1,15 +1,23 @@
 import React from 'react';
 
 const SignUpForm = (props) => {
-    console.log(props.fields)
+
+    const inputs = Object.keys(props.fields).map(key => (
+        <div>
+            <input 
+                type={key.includes('password') ? 'password' : 'text'}
+                //transforms name value from camelCase to snake_case
+                name={key.split(/(?=[A-Z])/).join('_').toLowerCase()} 
+                //transforms placeholder value from lowercase to Titlecase
+                placeholder={key.charAt(0).toUpperCase() + key.slice(1)} 
+            /><br/>
+        </div>
+    ));
 
     return (
         <form onChange={props.handleChange} onSubmit={props.handleSubmit}>
-            <input type='text' name="username" placeholder='Username'/><br/>
-            <input type='password' name="password" placeholder='Password' /><br/>
-            <input type='password' name="passwordConfirmation" placeholder='Confirm Password' /><br/>
-            <button type='submit' >Submit</button>
-            {/* on submit send login back to app for state/local storage changeups */}
+            {inputs}
+            <button className="submit" type='submit' >Submit</button>
       </form>
     )
 };
