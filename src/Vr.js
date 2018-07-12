@@ -6,20 +6,37 @@ import 'aframe-particle-system-component'
 
 
 class Vr extends React.Component{
+  constructor(){
+    super()
+     this.cardArr =[]
+  }
+  componentDidMount(){
+    document.querySelector('#deck').addEventListener("click", this.zoom)
+  }
+  sendEm = () =>{
+    this.props.handleReading(this.cardArr)
+  }
 
   spin  = (e) =>{
   e.target.emit('wee')
-  // remove event listener frmo target
   // add this.props.cards[X] to arr and pass up to app
-e.target.removeEventListener("click", this.spin)
-  console.log(e.target);
-  // e.target.setAttribute()
+  e.target.removeEventListener("click", this.spin)
   let randomCard = Math.floor(Math.random() * 21)
-  if(e.target.querySelector('.face')){
-    e.target.querySelector('.face').setAttribute("src", this.props.cards[randomCard].image_url)
-}
+  if(this.cardArr.includes(this.props.cards[randomCard])){
+    // console.log('she is working?');
+    this.spin(e)
+  }else {
+    this.cardArr.push(this.props.cards[randomCard])
+    if(e.target.querySelector('.face')){
+      e.target.querySelector('.face').setAttribute("src", this.props.cards[randomCard].image_url)
+    }
+  }
+
 }
 zoom = (e) =>{
+
+  e.target.parentElement.removeEventListener("click", this.zoom)
+
   const card2 = document.querySelector('#card-2')
   const card1 = document.querySelector('#card-1')
   const card3 = document.querySelector('#card-3')
@@ -48,13 +65,14 @@ render(){
       </a-mixin>
     </a-assets>
 
-    <a-box position="-4 3 -3"
+    <a-box id="exit-sign"
       rotation="0 30 0"
-      material="src: exit.png"
       depth=".001"
       height=".5"
       width=".75"
       shader="flat"
+      position="-4 3 -3"
+      material="src: exit.png"
       onClick={this.props.test}>
       <a-animation mixin="floats"
         delay="500"
@@ -63,11 +81,27 @@ render(){
         </a-animation>
       </a-box>
 
+    <a-box id="submit-sign"
+      position="-4 2 -3"
+      material="src: lines.png"
+      rotation="0 30 0"
+      depth=".001"
+      height=".5"
+      width=".75"
+      shader="flat"
+      onClick={this.sendEm}>
+      <a-animation mixin="floats"
+        delay="500"
+        from="-4 2 -3"
+        to="-4 1.7 -3">
+        </a-animation>
+      </a-box>
+
+
           {/* deck */}
           <a-entity id="deck"
             rotation= "0 90 15"
-            position="0 .3 -3"
-            onClick={this.zoom}>>
+            position="0 .3 -3">>
             <a-animation mixin="floats"
               from="0 .826 -3"
               to="0 .5 -3">
