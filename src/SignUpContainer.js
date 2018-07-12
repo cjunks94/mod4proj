@@ -1,5 +1,5 @@
 import React from 'react';
-import SignUpForm from './components/SignUpForm'
+import Form from './components/Form'
 
 class SignUpContainer extends React.Component {
 
@@ -8,13 +8,21 @@ class SignUpContainer extends React.Component {
           username: '',
           password: '',
           passwordConfirmation: '',
-      }
+          firstName: '',
+          lastName: '',
+          email: ''
+      },
+      data: {}
   };
 
   handleChange = (e) => {
-      console.log(e.target.name)
-      const newFields = { ...this.state.fields, [e.target.name]: e.target.value };
-      this.setState({ fields: newFields });
+      //transforms name value from snake_case to camelCase
+      const name = e.target.name.replace(/_([a-z])/g, (str) => str[1].toUpperCase() )
+      const newFields = { ...this.state.fields, [name]: e.target.value };
+      this.setState({ 
+          fields: newFields, 
+          data: {...this.state.data, [e.target.name]: e.target.value}
+        });
   };
 
   handleSubmit = (e) => {
@@ -25,20 +33,20 @@ class SignUpContainer extends React.Component {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
           },
-          body: JSON.stringify(this.state.fields)
+          body: JSON.stringify(this.state.data)
       }
       fetch('http://localhost:3000/api/v1/users', options)
-      // .then(resp => resp.json())
-      // .then(console.log)
+      .then(resp => resp.json())
+      .then(console.log)
   };
 
   render(){
 
-    
+
     return (
       <div className="page">
         <h1>Sign Up Page</h1>
-        < SignUpForm handleSubmit={this.handleSubmit} handleChange={this.handleChange}/>
+        < Form fields={this.state.fields} handleSubmit={this.handleSubmit} handleChange={this.handleChange}/>
       </div>
     );
   }

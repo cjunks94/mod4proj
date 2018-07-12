@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import Navbar from './NavBar';
 import SignUpContainer from './SignUpContainer';
+import ProfileContainer from './ProfileContainer';
 import Home from './Home';
 import Vr from './Vr';
 
@@ -19,6 +20,7 @@ class App extends React.Component{
       auth: {
         currentUser: {}
       },
+      userCards:[],
       currentCard: {},
       cards:[]
     }
@@ -31,6 +33,10 @@ class App extends React.Component{
     }
 
     this.getCards()
+  }
+  setCurrentReading = (arr) =>{
+    // set state as users 3 cards
+    console.log(arr);
   }
 
   getCards = () => {
@@ -64,7 +70,7 @@ class App extends React.Component{
           currentUser: user
         }
       }, () => {
-        localStorage.setItem('token', user.id)
+        localStorage.setItem('token', user.jwt)
       })
   }
 
@@ -80,7 +86,11 @@ class App extends React.Component{
   handleImgClick = (e) => {
     const currentCard = this.state.cards.find( card => card.id == e.target.id)
     this.setState({ currentCard })
-    window.scrollTo(0, document.body.scrollHeight)
+    setTimeout(
+      //adjusts document to show user new content
+      () => window.scrollTo(0, document.body.scrollHeight), 
+      100
+    ) 
   }
 
   homeFunc = () =>{
@@ -88,16 +98,21 @@ class App extends React.Component{
   }
 
   render(){
-  return (
-    <Router>
-      <div id="wrapper">
-        <Navbar currentUser={this.state.auth.currentUser} handleLogin={this.handleLogin} handleLogout={this.handleLogout}/>
-        <Route exact path="/" render={(props) => <Home {...props} cards={this.state.cards} currentCard={this.state.currentCard} handleImgClick={this.handleImgClick} />} />
-        <Route exact path="/signup" component={SignUpContainer} />
-        <Route exact path="/vr" render={()=> <Vr test={this.homeFunc}/>} />
-      </div>
-    </Router>
-  )}
+    const user = this.state.auth.currentUser;
+    
+    return (
+      <Router>
+        <div>
+          <Navbar currentUser={this.state.auth.currentUser} handleLogin={this.handleLogin} handleLogout={this.handleLogout}/>
+          <Route exact path="/" render={(props) => <Home {...props} cards={this.state.cards} currentCard={this.state.currentCard} handleImgClick={this.handleImgClick} />} />
+          <Route path="/signup" component={SignUpContainer} />
+          {user && <Route path={`/${user.username}`} render={(props)=> <ProfileContainer {...props} user={user}/>} />}
+          <Route exact path="/vr" render={(props)=> <Vr handleReading={this.setCurrentReading} cards={this.state.cards} test={this.homeFunc}/>} />
+        </div>
+      </Router>
+    )
+  }
+
 };
 
 export default App
