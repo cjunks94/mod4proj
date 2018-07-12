@@ -9,6 +9,7 @@ const Form = (props) => {
                 //transforms name value from camelCase to snake_case
                 name={key.split(/(?=[A-Z])/).join('_').toLowerCase()} 
                 //transforms placeholder value from lowercase to Titlecase
+                value={props.fields[`${key}`]}
                 placeholder={key.charAt(0).toUpperCase() + key.slice(1)} 
             /><br/>
         </div>
@@ -17,7 +18,7 @@ const Form = (props) => {
     return (
         <form onChange={props.handleChange} onSubmit={props.handleSubmit}>
             {inputs}
-            <button className="submit" type='submit' >Submit</button>
+            <button className='submit' type='submit' >Submit</button>
       </form>
     )
 };
