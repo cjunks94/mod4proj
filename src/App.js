@@ -20,7 +20,7 @@ class App extends React.Component{
       auth: {
         currentUser: {}
       },
-      userCards:[],
+      userCardReading:[],
       currentCard: {},
       cards:[]
     }
@@ -31,13 +31,36 @@ class App extends React.Component{
     if (token) {
       this.getAuth(token)
     }
-
     this.getCards()
   }
-  setCurrentReading = (arr) =>{
+
+  setCurrentReading = (cards) =>{
     // set state as users 3 cards
-    console.log(arr);
+    console.log(cards);
+    this.setState({
+      userCardReading: cards
+     })
+     const options =   {
+       method: 'POST',
+       headers: {
+         'Content-Type': 'application/json',
+         'Accept': 'application/json'
+       },
+           'body': JSON.stringify({
+             cards: cards,
+             user_id: 1,
+             date: Date.now()
+           })
+     }
+     fetch('http://localhost:3000/api/v1/readings', options)
+     // if(this.state.auth.currentUser === {}){
+     //   window.alert('you gotta login')
+     // }else{
+     //   window.alert('nice')
+     // }
+
   }
+
 
   getCards = () => {
     fetch('http://localhost:3000/api/v1/cards')
@@ -88,9 +111,9 @@ class App extends React.Component{
     this.setState({ currentCard })
     setTimeout(
       //adjusts document to show user new content
-      () => window.scrollTo(0, document.body.scrollHeight), 
+      () => window.scrollTo(0, document.body.scrollHeight),
       100
-    ) 
+    )
   }
 
   homeFunc = () =>{
@@ -99,7 +122,7 @@ class App extends React.Component{
 
   render(){
     const user = this.state.auth.currentUser;
-    
+
     return (
       <Router>
         <div>

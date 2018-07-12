@@ -17,21 +17,32 @@ class Vr extends React.Component{
     this.props.handleReading(this.cardArr)
   }
 
-  spin  = (e) =>{
-  e.target.emit('wee')
-  // add this.props.cards[X] to arr and pass up to app
-  e.target.removeEventListener("click", this.spin)
-  let randomCard = Math.floor(Math.random() * 21)
-  if(this.cardArr.includes(this.props.cards[randomCard])){
-    // console.log('she is working?');
-    this.spin(e)
-  }else {
-    this.cardArr.push(this.props.cards[randomCard])
-    if(e.target.querySelector('.face')){
-      e.target.querySelector('.face').setAttribute("src", this.props.cards[randomCard].image_url)
+  spinHelper = (e) =>{
+    let randomCard = Math.floor(Math.random() * 21)
+    let index = parseInt(e.target.id.charAt(5)) //which card is it?
+
+    if(this.cardArr.includes(this.props.cards[randomCard])){
+      this.spin(e)
+    }else {
+      this.cardArr.splice(index-1, 0, this.props.cards[randomCard].id)
+      //insert at correct index(card 1 at 0, 2 at 1 etc)
+      if(e.target.querySelector('.face')){
+        e.target.querySelector('.face').setAttribute("src", this.props.cards[randomCard].image_url)
+      }
     }
   }
 
+  showFinishedButton =()=>{
+    document.querySelector('#submit-sign').emit('done')
+  }
+
+  spin  = (e) =>{
+    e.target.emit('wee')
+    e.target.removeEventListener("click", this.spin)
+    this.spinHelper(e)
+    if(this.cardArr.length === 3){
+      this.showFinishedButton()
+    }
 }
 zoom = (e) =>{
 
@@ -52,9 +63,10 @@ zoom = (e) =>{
 render(){
   return (
     <a-scene new-scene>
-      <a-camera position="0 2 .75">
+      <a-camera position="0 2 .75" wasd-controls="enabled:false">
         <a-cursor color="yellow"></a-cursor>
     </a-camera>
+
 
     <a-assets>
       <a-mixin id="floats"
@@ -81,19 +93,32 @@ render(){
         </a-animation>
       </a-box>
 
+
+      {/* render only if logged in? or save only if logged in? */}
     <a-box id="submit-sign"
-      position="-4 2 -3"
-      material="src: lines.png"
-      rotation="0 30 0"
+      position="0 2 -1000"
+      material="src: reading.png"
       depth=".001"
-      height=".5"
-      width=".75"
+      height="1"
+      width="1.5"
       shader="flat"
+      opacity=".75"
       onClick={this.sendEm}>
+      <a-animation
+        attribute="position"
+        begin="done"
+        from="0 2 -1000"
+        to="0 2 -1">
+        </a-animation>
       <a-animation mixin="floats"
+        attribute="position"
+        direction="alternate"
         delay="500"
-        from="-4 2 -3"
-        to="-4 1.7 -3">
+        dur="3000"
+        repeat="indefinite"
+        begin="done"
+        from="0 2 -1"
+        to="0 1.9 -1">
         </a-animation>
       </a-box>
 
@@ -165,8 +190,8 @@ render(){
                       ></a-plane>
               </a-box>
 
-              {/* card 2 rightmost */}
-            <a-box id="card-2"
+              {/* card 3 rightmost */}
+            <a-box id="card-3"
               position="3 3.4 -1000"
               rotation="0 -10 0"
               width="2"
@@ -207,7 +232,7 @@ render(){
                       src="persona.png"
                       ></a-plane>
               </a-box>
-            <a-box id="card-3"
+            <a-box id="card-2"
               position="0 3.4 -1000"
               rotation="0 0 0"
               width="2"
