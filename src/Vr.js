@@ -23,7 +23,8 @@ class Vr extends React.Component{
   e.target.removeEventListener("click", this.spin)
   let randomCard = Math.floor(Math.random() * 21)
   if(this.cardArr.includes(this.props.cards[randomCard])){
-    this.spin(e.target)
+    // console.log('she is working?');
+    this.spin(e)
   }else {
     this.cardArr.push(this.props.cards[randomCard])
     if(e.target.querySelector('.face')){
