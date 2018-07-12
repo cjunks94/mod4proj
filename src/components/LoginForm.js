@@ -26,7 +26,11 @@ class LoginForm extends React.Component {
         fetch('http://localhost:3000/api/v1/login', options)
         .then(resp => resp.json())
         .then(user => {
-            this.props.handleLogin(user)
+            if (user.error) {
+                alert(user.error)
+            } else {
+                this.props.handleLogin(user)
+            }
         })
     };
 
@@ -49,7 +53,7 @@ class LoginForm extends React.Component {
                 onChange={this.handleChange}
                 />
                 
-                <button type="submit" className="basic button">
+                <button type="submit" className="button">
                     Login
                 </button>
             </form>
