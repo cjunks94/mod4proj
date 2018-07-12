@@ -46,7 +46,11 @@ class App extends React.Component{
          'Content-Type': 'application/json',
          'Accept': 'application/json'
        },
-           'body': JSON.stringify(cards)
+           'body': JSON.stringify({
+             cards: cards,
+             user_id: 1,
+             date: Date.now()
+           })
      }
      fetch('http://localhost:3000/api/v1/readings', options)
      // if(this.state.auth.currentUser === {}){
