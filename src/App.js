@@ -65,7 +65,7 @@ class App extends React.Component{
           currentUser: user
         }
       }, () => {
-        localStorage.setItem('token', user.id)
+        localStorage.setItem('token', user.jwt)
       })
   }
 
@@ -94,7 +94,7 @@ class App extends React.Component{
 
   render(){
     const user = this.state.auth.currentUser;
-    console.log(user)
+    
     return (
       <Router>
         <div>
