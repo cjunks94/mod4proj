@@ -73,3 +73,12 @@ h4 {
   display: flex;
   justify-content: center;
 }
+
+.reading {
+  display: flex;
+  justify-content: space-between;
+  margin: 1em 0;
+  padding: 3em 10em;
+  background-color: lightgray;
+  border: 2px solid black;
+}
