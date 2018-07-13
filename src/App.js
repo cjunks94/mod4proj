@@ -36,28 +36,26 @@ class App extends React.Component{
 
   setCurrentReading = (cards) =>{
     // set state as users 3 cards
-    console.log(cards);
+    console.log('cards:', cards, this.state.auth.currentUser);
     this.setState({
       userCardReading: cards
      })
-     const options =   {
+     const options = {
        method: 'POST',
        headers: {
          'Content-Type': 'application/json',
          'Accept': 'application/json'
        },
            'body': JSON.stringify({
-             cards: cards,
-             user_id: 1,
+             card_ids: cards,
+             user_id: this.state.auth.currentUser.id,
              date: Date.now()
            })
      }
-     fetch('http://localhost:3000/api/v1/readings', options)
-     // if(this.state.auth.currentUser === {}){
-     //   window.alert('you gotta login')
-     // }else{
-     //   window.alert('nice')
-     // }
+     if(this.state.auth.currentUser.id){
+       console.log('id:', this.state.auth.currentUser.id);
+      fetch('http://localhost:3000/api/v1/readings', options)
+    }
 
   }
 

@@ -9,7 +9,7 @@ const Profile = (props) => {
             <h2>{name}</h2>
             { email ? <p><strong>Email:</strong> {email}</p> : null}
             <button className="button" id="edit" onClick={props.handleEditClick}>Edit</button>
-            {/* render readings */}
+            { console.log(props.user.readings)}
         </div>
     )
 };
