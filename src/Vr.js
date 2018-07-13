@@ -2,6 +2,7 @@ import React from 'react';
 import 'aframe'
 import 'aframe-extras'
 import 'aframe-particle-system-component'
+import 'aframe-mouse-cursor-component'
 
 
 
@@ -20,8 +21,7 @@ class Vr extends React.Component{
   spinHelper = (e) =>{
     let randomCard = Math.floor(Math.random() * 21)
     let index = parseInt(e.target.id.charAt(5)) //which card is it?
-
-    if(this.cardArr.includes(this.props.cards[randomCard])){
+    if(this.cardArr.includes(randomCard)){
       this.spin(e)
     }else {
       this.cardArr.splice(index-1, 0, this.props.cards[randomCard].id)
@@ -34,6 +34,7 @@ class Vr extends React.Component{
 
   showFinishedButton =()=>{
     document.querySelector('#submit-sign').emit('done')
+    document.querySelectorAll('.reading').forEach(el => el.setAtrribute('visible', 'true'))
   }
 
   spin  = (e) =>{
@@ -186,8 +187,19 @@ render(){
                       height="3"
                       depth=".1"
                       src="persona.png"
-
                       ></a-plane>
+                      <a-plane
+                        class="reading"
+                        shader="flat"
+                        position=".014 0 -.06"
+                        rotation="0 180 0"
+                        width="2"
+                        height="3"
+                        depth=".1"
+                        visible="false"
+                        src="persona.png"
+
+                        ></a-plane>
               </a-box>
 
               {/* card 3 rightmost */}
