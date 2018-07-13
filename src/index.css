@@ -81,4 +81,19 @@ h4 {
   padding: 3em 10em;
   background-color: lightgray;
   border: 2px solid black;
+  position:relative;
+}
+
+.reading button {
+  display:block;
+  padding: 0;
+  width:2em;
+  height:1.5em;
+  position:absolute;
+  top:0px;
+  right:1px;
+  color: #000000;
+  background:#c00;
+  overflow:hidden;
+  text-align: center;
 }

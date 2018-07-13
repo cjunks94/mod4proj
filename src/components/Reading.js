@@ -5,7 +5,8 @@ import TarotImg from './TarotImg';
 const Reading = ({reading}) => {
     return (
         <div className="reading scrolling-wrapper">
-             {reading.map( reading_card => < TarotImg card={reading_card} />)} 
+            <button>X</button>
+            {reading.map( reading_card => < TarotImg card={reading_card} />)} 
         </div>
     )
 };
