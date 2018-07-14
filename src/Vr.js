@@ -21,7 +21,7 @@ class Vr extends React.Component{
     let randomCard = Math.floor(Math.random() * 21)
     let index = parseInt(e.target.id.charAt(5)) //which card is it?
 
-    if(this.cardArr.includes(this.props.cards[randomCard])){
+    if(this.cardArr.includes(randomCard)){
       this.spin(e)
     }else {
       this.cardArr.splice(index-1, 0, this.props.cards[randomCard].id)
