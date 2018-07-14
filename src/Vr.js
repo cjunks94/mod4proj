@@ -42,10 +42,7 @@ class Vr extends React.Component{
     e.target.removeEventListener("click", this.spin)
     this.spinHelper(e)
     if(this.cardArr.length === 3){
-<<<<<<< HEAD
-=======
       // --REPLACED WITH SEND EM TO CREATE READING ON 3RD DRAWN CARD
->>>>>>> edits
       // this.showFinishedButton()
       this.sendEm()
     }
