@@ -2,11 +2,12 @@ import React from 'react';
 
 import TarotImg from './TarotImg';
 
-const Reading = ({reading}) => {
+const Reading = ({reading, handleClick}) => {
+
     return (
-        <div className="reading scrolling-wrapper">
-            <button>X</button>
-            {reading.map( reading_card => < TarotImg card={reading_card} />)} 
+        <div id={reading.reading_id} className="reading scrolling-wrapper">
+            <button onClick={handleClick}>X</button>
+            {reading.cards && reading.cards.map( reading_card => < TarotImg card={reading_card} />)} 
         </div>
     )
 };

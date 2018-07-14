@@ -7,6 +7,7 @@ class ProfileContainer extends React.Component {
         super(props)
         console.log(props);
         this.state = {
+            user: props.user,
             onEdit: false,
             fields: {
                 username: props.user.username,
@@ -34,6 +35,25 @@ class ProfileContainer extends React.Component {
         }))
     }
 
+    deleteReading = (id) => {
+        const options = {
+            method: 'DELETE',
+            headers: {
+            'Content-Type': 'application/json'
+            }
+        }
+        fetch(`http://localhost:3000/api/v1/readings/${id}`, options)
+        .then( resp => {
+
+            this.setState({
+                user: {
+                    ...this.state.user, 
+                    readings: this.state.user.readings.filter( reading => parseInt(reading.reading_id) !== parseInt(id))
+                }
+            })
+        })
+    }
+
     handleEditClick = () => {
         this.setState({
             onEdit: true
@@ -59,12 +79,17 @@ class ProfileContainer extends React.Component {
         });
     }
 
+    handleDeleteClick = (e) => {
+        const id = e.target.parentElement.id
+        this.deleteReading(id)
+    }
+
     render() {
         return (
             <div className="profile page-body">
                 { this.state.onEdit ? 
                     <Form fields={this.state.fields} handleSubmit={this.handleEditSubmit} handleChange={this.handleEditChange}/> : 
-                    <Profile user={this.props.user} handleEditClick={this.handleEditClick} />}
+                    <Profile user={this.state.user} handleEditClick={this.handleEditClick} handleDeleteClick={this.handleDeleteClick} />}
                 {/* renders edit form */}
             </div>
         )

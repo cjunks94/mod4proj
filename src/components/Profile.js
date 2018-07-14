@@ -13,7 +13,8 @@ const Profile = (props) => {
             <p><strong>Readings:</strong> {readings.length}</p>
             <button className="button" id="edit" onClick={props.handleEditClick}>Edit</button>
             <h4><u>Your Recent Readings</u></h4> 
-            { readings.map(reading => <Reading reading={reading} />).reverse()}
+            {console.log(readings)}
+            { readings.map(reading => <Reading key={reading.reading_id} reading={reading} handleClick={props.handleDeleteClick} />).reverse()}
         </div>
     )
 };

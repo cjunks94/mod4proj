@@ -105,7 +105,7 @@ class App extends React.Component{
   }
 
   handleImgClick = (e) => {
-    const currentCard = this.state.cards.find( card => card.id == e.target.id)
+    const currentCard = this.state.cards.find( card => parseInt(card.id) === parseInt(e.target.id))
     this.setState({ currentCard })
     setTimeout(
       //adjusts document to show user new content
