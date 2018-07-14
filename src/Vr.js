@@ -32,16 +32,19 @@ class Vr extends React.Component{
     }
   }
 
-  showFinishedButton =()=>{
-    document.querySelector('#submit-sign').emit('done')
-  }
+  // --REMOVED SHOW FINISHED BUTTON, READING IS NOW SAVED INSTEAD
+  // showFinishedButton =()=>{
+  //   document.querySelector('#submit-sign').emit('done')
+  // }
 
   spin  = (e) =>{
     e.target.emit('wee')
     e.target.removeEventListener("click", this.spin)
     this.spinHelper(e)
     if(this.cardArr.length === 3){
-      this.showFinishedButton()
+      // --REPLACED WITH SEND EM TO CREATE READING ON 3RD DRAWN CARD
+      // this.showFinishedButton()
+      this.sendEm()
     }
 }
 zoom = (e) =>{
@@ -94,8 +97,9 @@ render(){
       </a-box>
 
 
-      {/* render only if logged in? or save only if logged in? */}
-    <a-box id="submit-sign"
+      {/* render only if logged in? or save only if logged in?
+      --REMOVED SIGN THAT WOULD SHOW THE CARD MEANINGS AND MOVED READING SUBMIT TO THIRD CARD */}
+    {/* <a-box id="submit-sign"
       position="0 2 -1000"
       material="src: reading.png"
       depth=".001"
@@ -120,7 +124,7 @@ render(){
         from="0 2 -1"
         to="0 1.9 -1">
         </a-animation>
-      </a-box>
+      </a-box> */}
 
 
           {/* deck */}
