@@ -21,6 +21,10 @@ a {
   text-align: center;
 }
 
+a:hover {
+  color: aliceblue;
+}
+
 input {
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
