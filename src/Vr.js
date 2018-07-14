@@ -41,7 +41,8 @@ class Vr extends React.Component{
     e.target.removeEventListener("click", this.spin)
     this.spinHelper(e)
     if(this.cardArr.length === 3){
-      this.showFinishedButton()
+      // this.showFinishedButton()
+      this.sendEm()
     }
 }
 zoom = (e) =>{
