@@ -65,12 +65,13 @@ input {
 .scrolling-wrapper {
   display: flex;
   flex-wrap: nowrap;
-  overflow-x: auto;
+  overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
 }
 
-.scrolling-wrapper .card {
+.scrolling-wrapper img {
   flex: 0 0 auto;
+  display: inline-block;
 }
 
 h4 {
