@@ -17,10 +17,18 @@ class Vr extends React.Component{
     this.props.handleReading(this.cardArr)
   }
   incOpac = (e) =>{
-    console.log(e.target);
+    if(e.target.className === "text"){
+      e.target.setAttribute("opacity", "1")
+    }else if(e.target.className === "card"){
+      e.target.childNodes[4].setAttribute("opacity", "1")
+    }
   }
   decOpac = (e) =>{
-    console.log(e.target);
+    if(e.target.className === "text"){
+      e.target.setAttribute("opacity", ".25")
+    }else if(e.target.className === "card"){
+      e.target.childNodes[4].setAttribute("opacity", ".25")
+    }
   }
 
   spinHelper = (e) =>{
@@ -48,6 +56,9 @@ class Vr extends React.Component{
   spin  = (e) =>{
     e.target.emit('wee')
     e.target.removeEventListener("click", this.spin)
+    // console.log(e.target);
+    e.target.addEventListener("mouseenter", this.incOpac)
+    e.target.addEventListener("mouseleave", this.decOpac)
     this.spinHelper(e)
     if(this.cardArr.length === 3){
       // --REPLACED WITH SEND EM TO CREATE READING ON 3RD DRAWN CARD
@@ -138,6 +149,7 @@ render(){
 
             {/* card 1 */}
             <a-box id="card-1"
+              class="card"
               position="-3 3.4 -1000"
               rotation="0 10 0"
               width="2"
@@ -164,7 +176,7 @@ render(){
                     from="0 10 0"
                     to="0 550 0">
                     </a-animation>
-                    <a-plane
+                    <a-plane id="face-1"
                       class="face"
                       shader="flat"
                       position=".014 0 -.06"
@@ -175,28 +187,24 @@ render(){
                       src="persona.png"
 
                       ></a-plane>
-                    <a-text class="text"
-                          rotation="0 180 0"
-                          value=""
-                          lineHeight="50"
-                          letterSpacing="2"
-                          anchor="align"
-                          align="center"
-                          color="blue"
-                          width="2"
-                          height="3"
-                          depth=".1"
-                          position=".6 .5 -.8"
-                          visible="false"
-                          >
-                            <a-plane
-                              height="2"
-                              width="2"
-                              visible="false"
-                              onMouseEnter={this.incOpac}
-                              onMouseLeave={this.decOpac}
-                              ></a-plane>
-                          </a-text>
+
+                      <a-text class="text"
+                            rotation="0 180 0"
+                            // geometry="primitive: plane; height: 2; width: 2; color:white"
+                            value=""
+                            lineHeight="50"
+                            letterSpacing="2"
+                            anchor="align"
+                            align="center"
+                            color="white"
+                            opacity=".25"
+                            width="2"
+                            height="3"
+                            position="-.04 0 -.19"
+                            visible="false"
+                            text="wrapCount: 25"
+                            >
+                            </a-text>
               </a-box>
 
               {/* card 3 rightmost */}
