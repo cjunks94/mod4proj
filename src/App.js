@@ -92,6 +92,7 @@ class App extends React.Component{
         }
       }, () => {
         localStorage.setItem('token', user.jwt)
+        this.homeFunc()
       })
   }
 
@@ -102,6 +103,7 @@ class App extends React.Component{
       }
     })
     localStorage.clear()
+    this.homeFunc()
   }
 
   handleImgClick = (e) => {
