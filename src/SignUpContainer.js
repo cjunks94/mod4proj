@@ -19,8 +19,8 @@ class SignUpContainer extends React.Component {
       //transforms name value from snake_case to camelCase
       const name = e.target.name.replace(/_([a-z])/g, (str) => str[1].toUpperCase() )
       const newFields = { ...this.state.fields, [name]: e.target.value };
-      this.setState({ 
-          fields: newFields, 
+      this.setState({
+          fields: newFields,
           data: {...this.state.data, [e.target.name]: e.target.value}
         });
   };
@@ -37,7 +37,7 @@ class SignUpContainer extends React.Component {
       }
       fetch('http://localhost:3000/api/v1/users', options)
       .then(resp => resp.json())
-      .then(console.log)
+      .then( () => document.location.href='/')
   };
 
   render(){
