@@ -20,11 +20,10 @@ class Vr extends React.Component{
   incOpac = (e) =>{
     e.target.setAttribute("text", "opacity", "1")
     e.target.setAttribute("material", "visible", "true")
-    e.target.setAttribute("material", "color", "#030303")
 
   }
   decOpac = (e) =>{
-    e.target.setAttribute("text", "opacity", ".25")
+    e.target.setAttribute("text", "opacity", "0")
     e.target.setAttribute("material", "visible", "false")
 
   }
@@ -96,6 +95,22 @@ render(){
         direction="alternate"
         dur="3000"
         repeat="indefinite">
+      </a-mixin>
+      <a-mixin id="interact-text"
+        geometry="primitive:plane; height:3; width:2;"
+        material="visible:false; color:#030303; opacity:.35"
+        rotation="0 180 0"
+        position=".016 0 -.1"
+        text="value: ;
+        lineHeight:50;
+        letterSpacing:2;
+        anchor:align;
+        align:center;
+        opacity:0;
+        width:2;
+        height:3;
+        wrapCount:25"
+        >
       </a-mixin>
     </a-assets>
 
@@ -188,19 +203,7 @@ render(){
 
                       ></a-plane>
                     <a-entity class="text"
-                      geometry="primitive:plane; height:3; width:2;"
-                      material="visible:false;"
-                      rotation="0 180 0"
-                      position=".026 0 -.12"
-                      text="value: ;
-                      lineHeight:50;
-                      letterSpacing:2;
-                      anchor:align;
-                      align:center;
-                      opacity:.25;
-                      width:2;
-                      height:3;
-                      wrapCount:25"
+                      mixin="interact-text"
                       >
 
                     </a-entity>
@@ -248,19 +251,7 @@ render(){
                       src="persona.png"
                       ></a-plane>
                       <a-entity class="text"
-                        geometry="primitive:plane; height:3; width:2"
-                        material="visible:false"
-                        rotation="0 180 0"
-                        position=".026 0 -.12"
-                        text="value: ;
-                        lineHeight:50;
-                        letterSpacing:2;
-                        anchor:align;
-                        align:center;
-                        opacity:.25;
-                        width:2;
-                        height:3;
-                        wrapCount:25"
+                          mixin="interact-text"
                         >
                       </a-entity>
               </a-box>
@@ -306,19 +297,7 @@ render(){
 
                       ></a-plane>
                       <a-entity class="text"
-                        geometry="primitive:plane; height:3; width:2"
-                        material="visible:false"
-                        rotation="0 180 0"
-                        position=".026 0 -.12"
-                        text="value: ;
-                        lineHeight:50;
-                        letterSpacing:2;
-                        anchor:align;
-                        align:center;
-                        opacity:.25;
-                        width:2;
-                        height:3;
-                        wrapCount:25"
+                        mixin="interact-text"
                         >
                       </a-entity>
               </a-box>
