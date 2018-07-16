@@ -1,6 +1,7 @@
 import React from 'react';
 import Profile from './components/Profile';
 import Form from './components/Form';
+import BASEURL from './baseURL'
 
 class ProfileContainer extends React.Component {
     constructor(props) {
@@ -28,7 +29,7 @@ class ProfileContainer extends React.Component {
             },
             body: JSON.stringify(this.state.data)
         }
-        fetch(`http://localhost:3000/api/v1/users/${this.props.user.id}`, options)
+        fetch(`${BASEURL}users/${this.props.user.id}`, options)
         .then(resp => resp.json())
         .then(user => this.setState({
             user
@@ -42,12 +43,12 @@ class ProfileContainer extends React.Component {
             'Content-Type': 'application/json'
             }
         }
-        fetch(`http://localhost:3000/api/v1/readings/${id}`, options)
+        fetch(`${BASEURL}readings/${id}`, options)
         .then( resp => {
 
             this.setState({
                 user: {
-                    ...this.state.user, 
+                    ...this.state.user,
                     readings: this.state.user.readings.filter( reading => parseInt(reading.reading_id) !== parseInt(id))
                 }
             })
@@ -64,8 +65,8 @@ class ProfileContainer extends React.Component {
         const name = e.target.name.replace(/_([a-z])/g, (str) => str[1].toUpperCase() )
         const newFields = { ...this.state.fields, [name]: e.target.value };
 
-        this.setState({ 
-          fields: newFields, 
+        this.setState({
+          fields: newFields,
           data: {...this.state.data, [e.target.name]: e.target.value}
         });
     }
@@ -87,8 +88,8 @@ class ProfileContainer extends React.Component {
     render() {
         return (
             <div className="profile page-body">
-                { this.state.onEdit ? 
-                    <Form fields={this.state.fields} handleSubmit={this.handleEditSubmit} handleChange={this.handleEditChange}/> : 
+                { this.state.onEdit ?
+                    <Form fields={this.state.fields} handleSubmit={this.handleEditSubmit} handleChange={this.handleEditChange}/> :
                     <Profile user={this.state.user} handleEditClick={this.handleEditClick} handleDeleteClick={this.handleDeleteClick} />}
                 {/* renders edit form */}
             </div>

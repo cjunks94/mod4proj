@@ -1,5 +1,6 @@
 import React from 'react';
 import Form from './components/Form'
+import BASEURL from './baseURL'
 
 class SignUpContainer extends React.Component {
 
@@ -35,7 +36,7 @@ class SignUpContainer extends React.Component {
           },
           body: JSON.stringify(this.state.data)
       }
-      fetch('http://localhost:3000/api/v1/users', options)
+      fetch(`${BASEURL}/users`, options)
       .then(resp => resp.json())
       .then( () => document.location.href='/')
   };

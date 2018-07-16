@@ -29,21 +29,20 @@ class Vr extends React.Component{
   }
 
   spinHelper = (e) =>{
-    let randomCard = Math.floor(Math.random() * 21)
-    console.log("index",randomCard);
+    let randomCard = (Math.floor(Math.random() * 21))//generate our random card
 
     let index = parseInt(e.target.id.charAt(5)) //which card is it?
-    console.log("array",this.cardArr);
-    if(this.cardArr.includes(randomCard)){
+    //is it a card we already chose check
+    if(this.cardArr.includes(randomCard+1)){
       this.spin(e)
     }else {
-      this.cardArr.splice(index-1, 0, this.props.cards[randomCard].id)
+      this.cardArr.splice(index, 0, this.props.cards[randomCard].id)
       //insert at correct index(card 1 at 0, 2 at 1 etc)
       if(e.target.querySelector('.face')){
         e.target.querySelector('.face').setAttribute("src", this.props.cards[randomCard].image_url)
         //grab nested and set it?
-        e.target.querySelector('.text').setAttribute("text", "value", this.props.cards[randomCard].meaning)
-        e.target.querySelector('.text').setAttribute("visible","true")
+        e.target.querySelector('.text').setAttribute("text", "value", this.props.cards[randomCard].meaning)//display meaning on face
+        e.target.querySelector('.text').setAttribute("visible","true")//set text to visible
       }
     }
   }
