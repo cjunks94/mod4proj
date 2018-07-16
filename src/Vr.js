@@ -2,6 +2,7 @@ import React from 'react';
 import 'aframe'
 import 'aframe-extras'
 import 'aframe-particle-system-component'
+import {Entity} from 'aframe-react'
 
 
 
@@ -16,11 +17,23 @@ class Vr extends React.Component{
   sendEm = () =>{
     this.props.handleReading(this.cardArr)
   }
+  incOpac = (e) =>{
+    e.target.setAttribute("text", "opacity", "1")
+    e.target.setAttribute("material", "visible", "true")
+
+  }
+  decOpac = (e) =>{
+    e.target.setAttribute("text", "opacity", "0")
+    e.target.setAttribute("material", "visible", "false")
+
+  }
 
   spinHelper = (e) =>{
     let randomCard = Math.floor(Math.random() * 21)
-    let index = parseInt(e.target.id.charAt(5)) //which card is it?
+    console.log("index",randomCard);
 
+    let index = parseInt(e.target.id.charAt(5)) //which card is it?
+    console.log("array",this.cardArr);
     if(this.cardArr.includes(randomCard)){
       this.spin(e)
     }else {
@@ -28,6 +41,9 @@ class Vr extends React.Component{
       //insert at correct index(card 1 at 0, 2 at 1 etc)
       if(e.target.querySelector('.face')){
         e.target.querySelector('.face').setAttribute("src", this.props.cards[randomCard].image_url)
+        //grab nested and set it?
+        e.target.querySelector('.text').setAttribute("text", "value", this.props.cards[randomCard].meaning)
+        e.target.querySelector('.text').setAttribute("visible","true")
       }
     }
   }
@@ -40,6 +56,8 @@ class Vr extends React.Component{
   spin  = (e) =>{
     e.target.emit('wee')
     e.target.removeEventListener("click", this.spin)
+    e.target.querySelector('.text').addEventListener("mouseenter", this.incOpac)
+    e.target.querySelector('.text').addEventListener("mouseleave", this.decOpac)
     this.spinHelper(e)
     if(this.cardArr.length === 3){
       // --REPLACED WITH SEND EM TO CREATE READING ON 3RD DRAWN CARD
@@ -50,7 +68,7 @@ class Vr extends React.Component{
 zoom = (e) =>{
 
   e.target.parentElement.removeEventListener("click", this.zoom)
-
+  //maybe do querySelectorAll and emit and add listeners
   const card2 = document.querySelector('#card-2')
   const card1 = document.querySelector('#card-1')
   const card3 = document.querySelector('#card-3')
@@ -78,6 +96,22 @@ render(){
         dur="3000"
         repeat="indefinite">
       </a-mixin>
+      <a-mixin id="interact-text"
+        geometry="primitive:plane; height:3; width:2;"
+        material="visible:false; color:#030303; opacity:.35"
+        rotation="0 180 0"
+        position=".016 0 -.1"
+        text="value: ;
+        lineHeight:50;
+        letterSpacing:2;
+        anchor:align;
+        align:center;
+        opacity:0;
+        width:2;
+        height:3;
+        wrapCount:25"
+        >
+      </a-mixin>
     </a-assets>
 
     <a-box id="exit-sign"
@@ -99,32 +133,7 @@ render(){
 
       {/* render only if logged in? or save only if logged in?
       --REMOVED SIGN THAT WOULD SHOW THE CARD MEANINGS AND MOVED READING SUBMIT TO THIRD CARD */}
-    {/* <a-box id="submit-sign"
-      position="0 2 -1000"
-      material="src: reading.png"
-      depth=".001"
-      height="1"
-      width="1.5"
-      shader="flat"
-      opacity=".75"
-      onClick={this.sendEm}>
-      <a-animation
-        attribute="position"
-        begin="done"
-        from="0 2 -1000"
-        to="0 2 -1">
-        </a-animation>
-      <a-animation mixin="floats"
-        attribute="position"
-        direction="alternate"
-        delay="500"
-        dur="3000"
-        repeat="indefinite"
-        begin="done"
-        from="0 2 -1"
-        to="0 1.9 -1">
-        </a-animation>
-      </a-box> */}
+
 
 
           {/* deck */}
@@ -155,6 +164,7 @@ render(){
 
             {/* card 1 */}
             <a-box id="card-1"
+              class="card"
               position="-3 3.4 -1000"
               rotation="0 10 0"
               width="2"
@@ -181,7 +191,7 @@ render(){
                     from="0 10 0"
                     to="0 550 0">
                     </a-animation>
-                    <a-plane
+                    <a-plane id="face-1"
                       class="face"
                       shader="flat"
                       position=".014 0 -.06"
@@ -192,6 +202,11 @@ render(){
                       src="persona.png"
 
                       ></a-plane>
+                    <a-entity class="text"
+                      mixin="interact-text"
+                      >
+
+                    </a-entity>
               </a-box>
 
               {/* card 3 rightmost */}
@@ -235,6 +250,10 @@ render(){
                       depth=".1"
                       src="persona.png"
                       ></a-plane>
+                      <a-entity class="text"
+                          mixin="interact-text"
+                        >
+                      </a-entity>
               </a-box>
             <a-box id="card-2"
               position="0 3.4 -1000"
@@ -277,6 +296,10 @@ render(){
                       src="persona.png"
 
                       ></a-plane>
+                      <a-entity class="text"
+                        mixin="interact-text"
+                        >
+                      </a-entity>
               </a-box>
 
 
@@ -302,6 +325,7 @@ render(){
 
 
     <a-entity particle-system="preset:dust;particleCount:10000;color:blue"></a-entity>
+
     </a-scene>
   )}
 };
