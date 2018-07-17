@@ -42,7 +42,7 @@ class App extends React.Component{
        headers: {
          'Content-Type': 'application/json',
          'Accept': 'application/json',
-         'Access-Control-Allow-Origin': 'https://tarot-vr.herokuapp.com'
+         'Access-Control-Allow-Origin': 'https://tarot-vr-api.herokuapp.com'
        },
            'body': JSON.stringify({
              card_ids: cards,
