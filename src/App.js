@@ -21,7 +21,6 @@ class App extends React.Component{
       auth: {
         currentUser: {}
       },
-      userCardReading:[],
       currentCard: {},
       cards:[]
     }
@@ -37,10 +36,9 @@ class App extends React.Component{
 
   setCurrentReading = (cards) =>{
     // set state as users 3 cards
-    console.log('cards:', cards, this.state.auth.currentUser);
-    this.setState({
-      userCardReading: cards
-     })
+    // debugger
+    // console.log('cards:', cards, this.state.auth.currentUser);
+
      const options = {
        method: 'POST',
        headers: {
