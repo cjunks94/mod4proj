@@ -39,10 +39,10 @@ class App extends React.Component{
 
      const options = {
        method: 'POST',
+       mode: 'no-cors',
        headers: {
          'Content-Type': 'application/json',
-         'Accept': 'application/json',
-         'Access-Control-Allow-Origin': 'https://tarot-vr-api.herokuapp.com'
+         'Accept': 'application/json'
        },
            'body': JSON.stringify({
              card_ids: cards,
