@@ -28,7 +28,6 @@ class LoginForm extends React.Component {
         fetch(`${BASEURL}/login`, options)
         .then(resp => resp.json())
         .then(user => {
-          console.log(user)
             if (user.error) {
                 alert(user.error)
             } else {

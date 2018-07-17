@@ -37,6 +37,7 @@ class Vr extends React.Component{
       this.spin(e)
     }else {
       this.cardArr.splice(index, 0, this.props.cards[randomCard].id)
+      console.log(this.cardArr);
       //insert at correct index(card 1 at 0, 2 at 1 etc)
       if(e.target.querySelector('.face')){
         e.target.querySelector('.face').setAttribute("src", this.props.cards[randomCard].image_url)
