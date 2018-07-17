@@ -9,6 +9,7 @@ import SignUpContainer from './SignUpContainer';
 import ProfileContainer from './ProfileContainer';
 import Home from './Home';
 import Vr from './Vr';
+import BASEURL from './baseURL'
 
 
 
@@ -54,14 +55,14 @@ class App extends React.Component{
      }
      if(this.state.auth.currentUser.id){
        console.log('id:', this.state.auth.currentUser.id);
-      fetch('http://localhost:3000/api/v1/readings', options)
+      fetch(`${BASEURL}/readings`, options)
     }
 
   }
 
 
   getCards = () => {
-    fetch('http://localhost:3000/api/v1/cards')
+    fetch(`${BASEURL}/cards`)
     .then(resp => resp.json())
     .then(cards => this.setState({ cards }))
   }
@@ -74,7 +75,7 @@ class App extends React.Component{
         'Authorization': token
       }
     }
-    fetch('http://localhost:3000/api/v1/reauth', options)
+    fetch(`${BASEURL}/reauth`, options)
     .then(resp => resp.json())
     .then(user => {
       this.setState({
@@ -92,6 +93,7 @@ class App extends React.Component{
         }
       }, () => {
         localStorage.setItem('token', user.jwt)
+        this.homeFunc()
       })
   }
 
@@ -102,6 +104,7 @@ class App extends React.Component{
       }
     })
     localStorage.clear()
+    this.homeFunc()
   }
 
   handleImgClick = (e) => {
