@@ -2,9 +2,6 @@ import React from 'react';
 import 'aframe'
 import 'aframe-extras'
 import 'aframe-particle-system-component'
-import {Entity} from 'aframe-react'
-
-
 
 class Vr extends React.Component{
   constructor(){

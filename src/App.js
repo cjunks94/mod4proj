@@ -36,14 +36,13 @@ class App extends React.Component{
 
   setCurrentReading = (cards) =>{
     // set state as users 3 cards
-    // debugger
-    // console.log('cards:', cards, this.state.auth.currentUser);
 
      const options = {
        method: 'POST',
        headers: {
          'Content-Type': 'application/json',
-         'Accept': 'application/json'
+         'Accept': 'application/json',
+         'Access-Control-Allow-Origin': 'https://tarot-vr.herokuapp.com'
        },
            'body': JSON.stringify({
              card_ids: cards,
