@@ -29,7 +29,7 @@ class ProfileContainer extends React.Component {
             },
             body: JSON.stringify(this.state.data)
         }
-        fetch(`${BASEURL}users/${this.props.user.id}`, options)
+        fetch(`${BASEURL}/users/${this.props.user.id}`, options)
         .then(resp => resp.json())
         .then(user => this.setState({
             user
@@ -43,7 +43,7 @@ class ProfileContainer extends React.Component {
             'Content-Type': 'application/json'
             }
         }
-        fetch(`${BASEURL}readings/${id}`, options)
+        fetch(`${BASEURL}/readings/${id}`, options)
         .then( resp => {
 
             this.setState({

@@ -1,4 +1,6 @@
 import React from 'react';
+import BASEURL from './baseURL';
+
 
 class LoginForm extends React.Component {
     state = {
@@ -23,9 +25,10 @@ class LoginForm extends React.Component {
             },
             body: JSON.stringify(this.state.fields)
         }
-        fetch('http://localhost:3000/api/v1/login', options)
+        fetch(`${BASEURL}/login`, options)
         .then(resp => resp.json())
         .then(user => {
+          console.log(user)
             if (user.error) {
                 alert(user.error)
             } else {
@@ -44,7 +47,7 @@ class LoginForm extends React.Component {
                 value={fields.username}
                 onChange={this.handleChange}
                 />
-            
+
                 <input
                 name="password"
                 type="password"
@@ -52,7 +55,7 @@ class LoginForm extends React.Component {
                 value={fields.password}
                 onChange={this.handleChange}
                 />
-                
+
                 <button type="submit" className="button">
                     Login
                 </button>

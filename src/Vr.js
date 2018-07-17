@@ -31,7 +31,7 @@ class Vr extends React.Component{
   spinHelper = (e) =>{
     let randomCard = (Math.floor(Math.random() * 21))//generate our random card
 
-    let index = parseInt(e.target.id.charAt(5)) //which card is it?
+    let index = parseInt(e.target.id.charAt(5))-1 //which card is it?
     //is it a card we already chose check
     if(this.cardArr.includes(randomCard+1)){
       this.spin(e)
