@@ -27,20 +27,28 @@ class Vr extends React.Component{
 
   spinHelper = (e) =>{
     let randomCard = (Math.floor(Math.random() * 21))//generate our random card
+    let cardFace = e.target.querySelector('.face')
+    let cardText = e.target.querySelector('.text')
 
     let index = parseInt(e.target.id.charAt(5))-1 //which card is it?
     //is it a card we already chose check
     if(this.cardArr.includes(randomCard+1)){
-      this.spin(e)
+      this.spin(e) //removes event listener
     }else {
       this.cardArr.splice(index, 0, this.props.cards[randomCard].id)
-      console.log(this.cardArr);
       //insert at correct index(card 1 at 0, 2 at 1 etc)
-      if(e.target.querySelector('.face')){
-        e.target.querySelector('.face').setAttribute("src", this.props.cards[randomCard].image_url)
-        //grab nested and set it?
-        e.target.querySelector('.text').setAttribute("text", "value", this.props.cards[randomCard].meaning)//display meaning on face
-        e.target.querySelector('.text').setAttribute("visible","true")//set text to visible
+      if(cardFace){
+        // makes the image load async
+        fetch("https://cors-anywhere.herokuapp.com/" + this.props.cards[randomCard].image_url)
+        .then(resp => resp.blob())
+        .then(blob => {
+            // const objectURL = URL.createObjectURL(blob);
+            let a = new FileReader()
+            a.onload = function(e) {cardFace.setAttribute('src', e.target.result)}    
+            a.readAsDataURL(blob)        
+        })
+        cardText.setAttribute("text", "value", this.props.cards[randomCard].meaning)//display meaning on face
+        cardText.setAttribute("visible","true")//set text to visible
       }
     }
   }
@@ -52,6 +60,7 @@ class Vr extends React.Component{
 
   spin  = (e) =>{
     e.target.emit('wee')
+
     e.target.removeEventListener("click", this.spin)
     e.target.querySelector('.text').addEventListener("mouseenter", this.incOpac)
     e.target.querySelector('.text').addEventListener("mouseleave", this.decOpac)
@@ -76,6 +85,7 @@ zoom = (e) =>{
   card2.emit('start')
   card1.emit('start')
   card3.emit('start')
+
 }
 
 render(){
@@ -91,7 +101,8 @@ render(){
         attribute="position"
         direction="alternate"
         dur="3000"
-        repeat="indefinite">
+        repeat="indefinite"
+        >
       </a-mixin>
       <a-mixin id="interact-text"
         geometry="primitive:plane; height:3; width:2;"
@@ -186,7 +197,8 @@ render(){
                     attribute="rotation"
                     begin="wee"
                     from="0 10 0"
-                    to="0 550 0">
+                    to="0 550 0"
+                    >
                     </a-animation>
                     <a-plane id="face-1"
                       class="face"
@@ -206,7 +218,7 @@ render(){
                     </a-entity>
               </a-box>
 
-              {/* card 3 rightmost */}
+            {/* card 3 rightmost */}
             <a-box id="card-3"
               position="3 3.4 -1000"
               rotation="0 -10 0"
@@ -235,7 +247,8 @@ render(){
                     attribute="rotation"
                     begin="wee"
                     from="0 -10 0"
-                    to="0 170 0">
+                    to="0 170 0"
+                   >
                     </a-animation>
                     <a-plane
                       class="face"
@@ -246,12 +259,13 @@ render(){
                       height="3"
                       depth=".1"
                       src="persona.png"
-                      ></a-plane>
-                      <a-entity class="text"
-                          mixin="interact-text"
-                        >
-                      </a-entity>
-              </a-box>
+                    >
+                    </a-plane>
+                    <a-entity class="text"
+                        mixin="interact-text"
+                    >
+                    </a-entity>
+            </a-box>
             <a-box id="card-2"
               position="0 3.4 -1000"
               rotation="0 0 0"
@@ -280,7 +294,8 @@ render(){
                     attribute="rotation"
                     begin="wee"
                     from="0 0 0"
-                    to="180 0 180">
+                    to="180 0 180"
+                    >
                     </a-animation>
                     <a-plane
                       class="face"
@@ -291,18 +306,18 @@ render(){
                       height="3"
                       depth=".1"
                       src="persona.png"
-
-                      ></a-plane>
-                      <a-entity class="text"
-                        mixin="interact-text"
-                        >
-                      </a-entity>
+                    >
+                    </a-plane>
+                    <a-entity class="text"
+                      mixin="interact-text"
+                    >
+                    </a-entity>
               </a-box>
 
 
     {/* box material will be changed to "src: 'our tarot img url'" */}
 
-      <a-entity light="type: point; intensity: 3" position="0 3.5 3.5"></a-entity>
+    <a-entity light="type: point; intensity: 3" position="0 3.5 3.5"></a-entity>
 
     <a-sky material="src: space.png" radius="3000">
       <a-animation attribute="rotation"
