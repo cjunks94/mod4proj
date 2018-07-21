@@ -42,7 +42,6 @@ class Vr extends React.Component{
         fetch("https://cors-anywhere.herokuapp.com/" + this.props.cards[randomCard].image_url)
         .then(resp => resp.blob())
         .then(blob => {
-            // const objectURL = URL.createObjectURL(blob);
             let a = new FileReader()
             a.onload = function(e) {cardFace.setAttribute('src', e.target.result)}    
             a.readAsDataURL(blob)        
@@ -53,11 +52,6 @@ class Vr extends React.Component{
     }
   }
 
-  // --REMOVED SHOW FINISHED BUTTON, READING IS NOW SAVED INSTEAD
-  // showFinishedButton =()=>{
-  //   document.querySelector('#submit-sign').emit('done')
-  // }
-
   spin  = (e) =>{
     e.target.emit('wee')
 
@@ -66,11 +60,10 @@ class Vr extends React.Component{
     e.target.querySelector('.text').addEventListener("mouseleave", this.decOpac)
     this.spinHelper(e)
     if(this.cardArr.length === 3){
-      // --REPLACED WITH SEND EM TO CREATE READING ON 3RD DRAWN CARD
-      // this.showFinishedButton()
       this.sendEm()
     }
 }
+
 zoom = (e) =>{
 
   e.target.parentElement.removeEventListener("click", this.zoom)
