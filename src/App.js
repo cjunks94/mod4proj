@@ -16,7 +16,7 @@ import BASEURL from './baseURL'
 class App extends React.Component{
   constructor(){
     super()
-    // set state with stuff i thought was useful
+
     this.state ={
       auth: {
         currentUser: {}
@@ -37,21 +37,20 @@ class App extends React.Component{
   setCurrentReading = (cards) =>{
     // set state as users 3 cards
 
-     const options = {
-       method: 'POST',
-       mode: 'no-cors',
-       headers: {
-         'Content-Type': 'application/json',
-         'Accept': 'application/json'
-       },
-           'body': JSON.stringify({
-             card_ids: cards,
-             user_id: this.state.auth.currentUser.id,
-             date: Date.now()
-           })
-     }
-     if(this.state.auth.currentUser.id){
-       console.log('id:', this.state.auth.currentUser.id);
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+            card_ids: cards,
+            user_id: this.state.auth.currentUser.id,
+            date: Date.now() // format doesnt translate well at all to Ruby
+      })
+    }
+
+    if(this.state.auth.currentUser.id){
       fetch(`${BASEURL}/readings`, options)
     }
 
